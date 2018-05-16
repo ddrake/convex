@@ -7,7 +7,7 @@ def grad_f(x):
     gf = array([2*x[0]+x[1]+1,x[0]+2*x[1]-1])
     return gf
 
-def gradient(max_gradf=1.0e-4, x0=[0,0], t=0.1):
+def gradient(max_gradf=1.0e-4, x0=[5,10], t=0.1):
     x1s = []
     x2s = []
     fs = []
@@ -22,9 +22,10 @@ def gradient(max_gradf=1.0e-4, x0=[0,0], t=0.1):
         x1s.append(xk[0])
         x2s.append(xk[1])
         fs.append(fk)
-    return gfk_n2, fs, x1s, x2s
+    return fs, x1s, x2s
 
-def nesterov(max_gradf=1.0e-4, x0=[0,0], t=0.1):
+# this should have faster convergence, but currently slightly slower.
+def nesterov(max_gradf=1.0e-4, x0=[5,10], t=0.1):
     x1s = []
     x2s = []
     fs = []
