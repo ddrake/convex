@@ -16,7 +16,7 @@ def gradient(max_gradf=1.0e-4, x0=[5,10], t=0.1):
     gfk_n2 = gfk.dot(gfk)
     while gfk_n2 > max_gradf:
         gfk = grad_f(xk)
-        gfk_n2 = gfk.dot(gfk)
+        gfk_n2 = sqrt(gfk.dot(gfk))
         xk -= t*gfk
         fk = f(xk)
         x1s.append(xk[0])
@@ -41,7 +41,7 @@ def nesterov(max_gradf=1.0e-4, x0=[5,10], t=0.1):
         xk1 = yk - t*gfk
         tk1 = (1.0 + sqrt(1.0 + 4.0*tk*tk))/2.0
         g = (tk-1)/tk1
-        g = (k-2)/(k+1)
+        #g = (k-2)/(k+1)
         yk = xk1 + g*(xk1 - xk)
         fk = f(xk)
         x1s.append(xk1[0])
@@ -50,7 +50,7 @@ def nesterov(max_gradf=1.0e-4, x0=[5,10], t=0.1):
         fs.append(fk)
         tk = tk1
         xk = xk1
-        gfk_n2 = gfk.dot(gfk)
+        gfk_n2 = sqrt(gfk.dot(gfk))
         k+=1
     return fs, x1s, x2s, gs
 
