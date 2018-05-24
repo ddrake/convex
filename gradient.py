@@ -19,7 +19,7 @@ def grad_f(x):
     b = array([1,-1])
     return 2*a.dot(x) + b
 
-def gradient(max_gradf=1.0e-4, x0=[5,10], t=0.1):
+def gradient(max_gradf=1.0e-4, x0=[5.,10.], t=0.1):
     fs = []
     xk = array(x0)
     gfk = grad_f(xk)
